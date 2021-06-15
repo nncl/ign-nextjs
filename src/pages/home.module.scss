@@ -2,11 +2,24 @@
   max-width: 1120px;
   margin: 0 auto;
   padding: 0 2rem;
-  height: calc(100vh - 5rem);
 
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-direction: column;
+
+  height: auto;
+
+  @media screen and (min-width: 600px) {
+    flex-direction: row;
+    height: calc(100vh - 5rem);
+  }
+
+  img {
+    @media screen and (max-width: 599px) {
+      margin: 20px 0;
+    }
+  }
 }
 
 .hero {
@@ -37,5 +50,9 @@
       color: var(--cyan-500);
       font-weight: bold;
     }
+  }
+
+  button {
+    margin-top: 2.5rem;
   }
 }
