@@ -25,12 +25,18 @@ export default function Home({ product }: HomeProps) {
 
           <h1>News about the <span>React</span> world.</h1>
 
-          <p>
-            Get access to all the publications <br/>
-            <span>for { product.amount } month</span>
-          </p>
+          {
+            product?.amount && (
+              <>
+                <p>
+                  Get access to all the publications <br/>
+                  <span>for { product?.amount || 0 } month</span>
+                </p>
 
-          <SubscribeButton priceId={ product.priceId }/>
+                <SubscribeButton priceId={ product?.priceId || '' }/>
+              </>
+            )
+          }
         </section>
 
         <img src="/images/avatar.svg" alt="Girl Coding"/>
@@ -40,19 +46,25 @@ export default function Home({ product }: HomeProps) {
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const price = await stripe.prices.retrieve('price_1J34pQHenXu3l6hFARaE0uLd')
+  try {
+    const price = await stripe.prices.retrieve('price_1J34pQHenXu3l6hFARaE0uLd')
 
-  const product = {
-    id: price.id,
-    amount: new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD'
-    }).format((price.unit_amount / 100)),
-  }
+    const product = {
+      id: price.id,
+      amount: new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD'
+      }).format((price.unit_amount / 100)),
+    }
 
-  return {
-    props: {
-      product
+    return {
+      props: {
+        product
+      }
+    }
+  } catch (e) {
+    return {
+      props: {}
     }
   }
 }
