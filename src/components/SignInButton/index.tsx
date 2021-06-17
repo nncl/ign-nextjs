@@ -9,7 +9,7 @@ export function SignInButton() {
   const [ session, loading ] = useSession()
 
   return session ? (
-    <button type='button' className={ styles.signButton } onClick={ () => signOut() }>
+    <button type='button' className={ styles.signButton } onClick={ () => signOut({ redirect: false }) }>
       <FaGithub color='#04d361'/>
       { session?.user?.name }
       <FiX color='#737380' className={ styles.closeIcon }/>
@@ -17,7 +17,7 @@ export function SignInButton() {
   ) : (
     <button type='button' className={ styles.signButton } onClick={ () => signIn('github') }>
       <FaGithub color='#eba417'/>
-      {loading ? 'Loading...' : 'Sign in with Github'}
+      { loading ? 'Loading...' : 'Sign in with Github' }
     </button>
   )
 
