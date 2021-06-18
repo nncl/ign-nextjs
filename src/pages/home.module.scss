@@ -16,6 +16,9 @@
   }
 
   img {
+    width: auto;
+    height: auto;
+
     @media screen and (max-width: 599px) {
       margin: 20px 0;
     }
