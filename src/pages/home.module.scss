@@ -31,10 +31,15 @@
   }
 
   h1 {
-    font-size: 4.5rem;
-    line-height: 4.5rem;
+    font-size: 3.5rem;
+    line-height: 4rem;
     font-weight: 900;
     margin-top: 2.5rem;
+
+    @media screen and (min-width: 768px) {
+      font-size: 4.5rem;
+      line-height: 4.5rem;
+    }
 
     span {
       color: var(--cyan-500);
