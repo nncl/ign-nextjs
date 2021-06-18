@@ -45,6 +45,13 @@ export default function Home({ product }: HomeProps) {
   )
 }
 
+/**
+ * We don't use GetServerSideProps in order to NOT process it
+ * every time an user access it.
+ *
+ * Instead, we cache its in one day and within this time we process from scratch,
+ * to keep information up to date.
+ */
 export const getStaticProps: GetStaticProps = async () => {
   const revalidate = 60 * 60 * 24 // 24 hours;
 
