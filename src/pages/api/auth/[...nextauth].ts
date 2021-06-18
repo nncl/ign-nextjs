@@ -15,9 +15,10 @@ export default NextAuth({
     }),
   ],
 
-  jwt: {
-    signingKey: process.env.SINGIN_KEY
-  },
+  // TODO On production add a real one
+  // jwt: {
+  //   signingKey: process.env.SINGIN_KEY
+  // },
 
   callbacks: {
     async signIn(user, account, profile) {
