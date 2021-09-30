@@ -73,8 +73,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
               true,
             )
 
-            // TODO FINISHED PÁGINA POSTS' CLASS
-
             break;
           default:
             throw new Error('Unhandled event');
